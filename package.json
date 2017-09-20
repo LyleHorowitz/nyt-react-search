@@ -1,0 +1,21 @@
+{
+  "name": "nyt-react-search",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LyleHorowitz/nyt-react-search.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LyleHorowitz/nyt-react-search/issues"
+  },
+  "homepage": "https://github.com/LyleHorowitz/nyt-react-search#readme"
+}
