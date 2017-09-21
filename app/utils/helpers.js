@@ -7,8 +7,8 @@ var helpers = {
   runQuery: function(term, start, end)  {
 
     var term = term.trim();
-    var start = start.trim() + "0101";
-    var end = end.trim() + "1231";
+    var start = start.trim();
+    var end = end.trim();
 
     return axios.get('https://api.nytimes.com/svc/search/v2/articlesearch.json', {
       params: {
