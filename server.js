@@ -14,6 +14,8 @@ app.use(bodyParser.json({type:'application/vnd.api+json'}));
 
 app.use(express.static('./public'));
 
+var link = 'mongodb://heroku_3fnrdd84:af4r5u0kuh7cfkt4okdn6pjd6g@ds135624';
+
 mongoose.connect(link);
 var db = mongoose.connection;
 
