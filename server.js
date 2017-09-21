@@ -6,15 +6,13 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var logger = require("morgan");
 var mongoose = require("mongoose");
-// Requiring our Note and Article models
-var Note = require("./models/Note.js");
+// Requiring our Article model
 var Article = require("./models/Article.js");
 // Our scraping tools
 var request = require("request");
 var cheerio = require("cheerio");
 // Set mongoose to leverage built in JavaScript ES6 Promises
 mongoose.Promise = Promise;
-
 
 // Initialize Express
 var app = express();
@@ -103,8 +101,8 @@ app.get("/articles", function(req, res) {
 app.get("/articles/:id", function(req, res) {
     // Using the id passed in the id parameter, prepare a query that finds the matching one in our db...
     Article.findOne({ "_id": req.params.id })
-        // ..and populate all of the notes associated with it
-        .populate("note")
+        // ..and populate all of the articles associated with it
+        .populate("article")
         // now, execute our query
         .exec(function(error, doc) {
             // Log any errors
@@ -119,21 +117,21 @@ app.get("/articles/:id", function(req, res) {
 });
 
 
-// Create a new note or replace an existing note
+// Create a new article or replace an existing article
 app.post("/articles/:id", function(req, res) {
-    // Create a new note and pass the req.body to the entry
-    var newNote = new Note(req.body);
+    // Create a new article and pass the req.body to the entry
+    var newArticle = new Article(req.body);
 
-    // And save the new note the db
-    newNote.save(function(error, doc) {
+    // And save the new article to the db
+    newArticle.save(function(error, doc) {
         // Log any errors
         if (error) {
             console.log(error);
         }
         // Otherwise
         else {
-            // Use the article id to find and update it's note
-            Article.findOneAndUpdate({ "_id": req.params.id }, { "note": doc._id })
+            // Use the article id to find and update it's article
+            Article.findOneAndUpdate({ "_id": req.params.id }, { "article": doc._id })
                 // Execute the above query
                 .exec(function(err, doc) {
                     // Log any errors
